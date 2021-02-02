@@ -1,0 +1,34 @@
+<ng-container *ngIf="globalStat$ | async as stat">
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>{{title}}</ion-title>
+      <ion-item slot="end">Updated: {{stat.updated | amCalendar}}</ion-item>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content fullscreen="true" fixed="true">
+    <ng-container>
+      <app-covid-stat-card
+        label="Cases"
+        [grandTotal]="stat.cases"
+        [todaysTotal]="stat.todayCases"
+        color="primary"
+      >
+      </app-covid-stat-card>
+      <app-covid-stat-card
+        label="Deaths"
+        color="danger"
+        [grandTotal]="stat.deaths"
+        [todaysTotal]="stat.todayDeaths"
+      >
+      </app-covid-stat-card>
+      <app-covid-stat-card
+        label="Recovered"
+        color="success"
+        [grandTotal]="stat.recovered"
+        [todaysTotal]="stat.todayRecovered"
+      >
+      </app-covid-stat-card>
+    </ng-container>
+  </ion-content>
+</ng-container>
