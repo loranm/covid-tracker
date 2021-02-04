@@ -13,7 +13,6 @@ import { CountriesService } from './countries.service';
 })
 export class CovidService {
   private parseStat(stat: RemoteStatDto): Stat {
-    console.log(moment.locale());
     return { ...stat, updated: moment(stat.updated) };
   }
 
