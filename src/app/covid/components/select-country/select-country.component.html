@@ -1,0 +1,29 @@
+<ion-card>
+  <ion-item>
+    <ion-select
+      [(ngModel)]="selectedCountryId"
+      [interfaceOptions]="customAlertOptions"
+      placeholder="Select your country"
+    >
+      <ion-select-option
+        *ngFor="let country of countries"
+        [value]="country._id"
+      >
+        {{ country.name }}
+      </ion-select-option>
+    </ion-select>
+
+    <ion-button
+      slot="end"
+      color="primary"
+      fill="clear"
+      (click)="onClick()"
+      [disabled]="!selectedCountryId"
+    >
+      <ion-icon
+        slot="icon-only"
+        [name]="!selectedCountryId ? icons.eyeOff : icons.eye"
+      ></ion-icon>
+    </ion-button>
+  </ion-item>
+</ion-card>

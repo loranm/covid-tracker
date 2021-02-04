@@ -1,6 +1,5 @@
 export interface Stat {
   updated: moment.Moment;
-  stats?: [{ label: string; totalCases: number; todaysCases: number }];
   cases: number;
   todayCases: number;
   deaths: number;

@@ -1,0 +1,56 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar color="primary">
+    <ion-title size="large"> {{ title }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ng-container *ngIf="vm$ | async as vm">
+  <ion-content fullscreen="true" fixed="true">
+    <ion-grid>
+      <ion-row>
+        <ion-col size="4" offset="8">
+          <app-date-holder [updated]="vm.stats.updated"></app-date-holder>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <app-select-country
+            [countries]="vm.countries"
+            (onCountrySelect)="goTo($event)"
+          >
+          </app-select-country>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="12" size-sm>
+          <app-covid-stat-card
+            label="Cases"
+            [grandTotal]="vm.stats.cases"
+            [todaysTotal]="vm.stats.todayCases"
+            color="primary"
+          >
+          </app-covid-stat-card>
+        </ion-col>
+        <ion-col size="12" size-sm>
+          <app-covid-stat-card
+            label="Deaths"
+            color="danger"
+            [grandTotal]="vm.stats.deaths"
+            [todaysTotal]="vm.stats.todayDeaths"
+          >
+          </app-covid-stat-card>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <app-covid-stat-card
+            label="Recovered"
+            color="success"
+            [grandTotal]="vm.stats.recovered"
+            [todaysTotal]="vm.stats.todayRecovered"
+          >
+          </app-covid-stat-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-content>
+</ng-container>

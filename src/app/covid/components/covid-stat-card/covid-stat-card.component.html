@@ -1,14 +1,14 @@
-<ion-card>
+<ion-card button [color]="color">
   <ion-card-header>
     <ion-card-title [color]="color">{{ label }}</ion-card-title>
   </ion-card-header>
   <ion-card-content>
     <ion-list>
-      <ion-item>
+      <ion-item lines="none">
         <ion-label> Grand total</ion-label>
         <p>{{ grandTotal | number }}</p>
       </ion-item>
-      <ion-item>
+      <ion-item lines="none">
         <ion-label> Today's total</ion-label>
         <p>{{ todaysTotal | number }}</p>
       </ion-item>

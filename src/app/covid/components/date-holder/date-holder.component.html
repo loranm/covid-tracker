@@ -1,0 +1,10 @@
+<ion-chip color="primary">
+  <ion-icon name="calendar"></ion-icon>
+
+  <!-- TODO: let the user select a date with date picker -->
+  <!-- <ion-datetime
+    [value]="updated | amDateFormat"
+    display-timezone="utc"
+  ></ion-datetime> -->
+  <ion-label>{{ updated | amCalendar }}</ion-label>
+</ion-chip>

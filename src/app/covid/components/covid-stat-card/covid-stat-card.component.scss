@@ -1,0 +1,27 @@
+:host {
+  ion-card {
+    background-image: linear-gradient(
+      to top left,
+      rgba(0, 0, 0, 0.74),
+      rgba(23, 23, 23, 0.67),
+      rgba(46, 46, 46, 0.61),
+      rgba(70, 70, 70, 0.54),
+      rgba(93, 93, 93, 0.47),
+      rgba(116, 116, 116, 0.4),
+      rgba(139, 139, 139, 0.34),
+      rgba(162, 162, 162, 0.27),
+      rgba(185, 185, 185, 0.2),
+      rgba(209, 209, 209, 0.13),
+      rgba(232, 232, 232, 0.07),
+      rgba(255, 255, 255, 0)
+    );
+    ion-list {
+      --ion-background-color: transparent;
+      --ion-text-color: var(--ion-color-primary-contrast);
+      ion-item > p {
+        font-size: 1.2rem;
+        font-weight: bold;
+      }
+    }
+  }
+}

@@ -1,0 +1,39 @@
+<ng-container *ngIf="selectedCountry$ | async as selectedCountry">
+  <ion-header class="ion-no-border">
+    <ion-toolbar color="primary">
+      <ion-buttons slot="start">
+        <ion-back-button></ion-back-button>
+      </ion-buttons>
+      <ion-buttons slot="secondary">
+        <ion-thumbnail>
+          <ion-img [src]="selectedCountry.country.flag"></ion-img>
+        </ion-thumbnail>
+      </ion-buttons>
+      <ion-title size="large"> {{ selectedCountry.country.name }}</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content>
+    <app-covid-stat-card
+      label="Cases"
+      [grandTotal]="selectedCountry.stats.cases"
+      [todaysTotal]="selectedCountry.stats.todayCases"
+      color="primary"
+    >
+    </app-covid-stat-card>
+    <app-covid-stat-card
+      label="Deaths"
+      color="danger"
+      [grandTotal]="selectedCountry.stats.deaths"
+      [todaysTotal]="selectedCountry.stats.todayDeaths"
+    >
+    </app-covid-stat-card>
+    <app-covid-stat-card
+      label="Recovered"
+      color="success"
+      [grandTotal]="selectedCountry.stats.recovered"
+      [todaysTotal]="selectedCountry.stats.todayRecovered"
+    >
+    </app-covid-stat-card>
+  </ion-content>
+</ng-container>
