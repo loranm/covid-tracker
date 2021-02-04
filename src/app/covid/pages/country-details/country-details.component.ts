@@ -3,7 +3,7 @@ import { ActivatedRoute, ParamMap } from '@angular/router';
 import { combineLatest } from 'rxjs';
 import { map, take } from 'rxjs/operators';
 import { CountriesService } from '../../services/countries.service';
-import { CovidService } from '../../services/covid.service';
+import { CovidService } from '../../services/stats.service';
 
 @Component({
   selector: 'app-country-details',

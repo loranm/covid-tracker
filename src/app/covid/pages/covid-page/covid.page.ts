@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { combineLatest } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { CountriesService } from '../../services/countries.service';
-import { CovidService } from '../../services/covid.service';
+import { CovidService } from '../../services/stats.service';
 
 @Component({
   selector: 'app-covid',
@@ -14,11 +14,17 @@ export class CovidPage {
   title = 'Worldwide Stats';
   globalStat$ = this.covidService.globalStat$;
   countries$ = this.countriesService.countriesList$;
+  historicalStats$ = this.covidService.historicalStats$;
   selectedCountry$ = this.countriesService.selectedCountry$;
 
-  vm$ = combineLatest([this.globalStat$, this.countries$]).pipe(
-    map(([stats, countries]) => ({
+  vm$ = combineLatest([
+    this.globalStat$,
+    this.historicalStats$,
+    this.countries$,
+  ]).pipe(
+    map(([stats, historicalStats, countries]) => ({
       stats,
+      historicalStats,
       countries,
     }))
   );

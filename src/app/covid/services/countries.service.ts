@@ -11,6 +11,7 @@ import { environment } from 'src/environments/environment';
 })
 export class CountriesService {
   public readonly countriesEndpoint = 'countries';
+
   private selectedCountrySubject = new BehaviorSubject<number>(null);
   selectedCountryAction$ = this.selectedCountrySubject.asObservable();
 
