@@ -3,7 +3,9 @@
     <ion-select
       [(ngModel)]="selectedCountryId"
       [interfaceOptions]="customAlertOptions"
-      placeholder="Select your country"
+      [placeholder]="'COVID.MAIN.SELECT.PLACEHOLDER' | translate"
+      [okText]="'SHARED.OK' | translate"
+      [cancelText]="'SHARED.CANCEL' | translate"
     >
       <ion-select-option
         *ngFor="let country of countries"

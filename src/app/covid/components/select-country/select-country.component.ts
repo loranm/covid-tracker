@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 import { Country } from 'src/app/shared/interfaces/country';
 
 @Component({
@@ -11,7 +12,7 @@ export class SelectCountryComponent {
   @Output() onCountrySelect = new EventEmitter<number>();
 
   private readonly _customAlertOptions = {
-    header: 'Select one country',
+    header: this.translate.instant('COVID.MAIN.SELECT.PLACEHOLDER'),
     translucent: true,
   };
 
@@ -35,10 +36,11 @@ export class SelectCountryComponent {
   }
 
   public onClick() {
-    console.log(this.selectedCountryId);
     if (!Boolean(this.selectedCountryId)) {
       return;
     }
     this.onCountrySelect.emit(this.selectedCountryId);
   }
+
+  constructor(private translate: TranslateService) {}
 }

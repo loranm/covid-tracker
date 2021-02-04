@@ -1,0 +1,15 @@
+{
+  "SHARED": {
+    "OK": "OK",
+    "CANCEL": "Annuler"
+  },
+  "COVID": {
+    "MAIN": {
+      "TITLE": "Worlwide Statistics",
+      "CASES": "Cases",
+      "DEATHS": "Deaths",
+      "RECOVERIES": "Recoveries",
+      "SELECT": { "PLACEHOLDER": "Choose a country..." }
+    }
+  }
+}
