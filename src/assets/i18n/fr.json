@@ -8,7 +8,7 @@
       "TITLE": "Statistiques mondiales",
       "CASES": "Cas",
       "DEATHS": "Morts",
-      "RECOVERIES": "Guérisons",
+      "RECOVERED": "Guérisons",
       "SELECT": { "PLACEHOLDER": "Choisissez un pays..." }
     }
   }
