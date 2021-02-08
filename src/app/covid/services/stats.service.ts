@@ -5,9 +5,9 @@ import { Observable } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
 import { RemoteStatDto } from 'src/app/shared/dto/createStatDTO';
 import { environment } from 'src/environments/environment';
-import { CountriesService } from './countries.service';
 import * as fromModel from '../../shared/interfaces';
 import { TranslateService } from '@ngx-translate/core';
+import { CountriesService } from 'src/app/shared/services/countries.service';
 @Injectable({
   providedIn: 'root',
 })
