@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { combineLatest } from 'rxjs';
 import { map, take } from 'rxjs/operators';
-import { CountriesService } from '../../services/countries.service';
+import { CountriesService } from 'src/app/shared/services/countries.service';
 import { CovidService } from '../../services/stats.service';
 
 @Component({

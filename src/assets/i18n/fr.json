@@ -9,7 +9,7 @@
       "CASES": "Cas",
       "DEATHS": "Morts",
       "RECOVERED": "Guérisons",
-      "SELECT": { "PLACEHOLDER": "Choisissez un pays..." }
+      "SEARCH": { "PLACEHOLDER": "Choisissez un pays..." }
     }
   }
 }

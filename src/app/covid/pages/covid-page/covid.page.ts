@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { combineLatest } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { CountriesService } from '../../services/countries.service';
+import { CountriesService } from 'src/app/shared/services/countries.service';
 import { CovidService } from '../../services/stats.service';
 
 @Component({
@@ -33,6 +33,10 @@ export class CovidPage {
     this.router.navigate([`country/${countryId}`], {
       relativeTo: this.route,
     });
+  }
+
+  onSearchClicked() {
+    this.router.navigate(['search']);
   }
 
   constructor(
