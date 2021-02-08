@@ -1,63 +1,56 @@
-<ion-header class="ion-no-border">
-  <ion-toolbar color="primary">
-    <ion-title size="large"> {{ "COVID.MAIN.TITLE" | translate }}</ion-title>
-  </ion-toolbar>
-  <ion-toolbar>
-    <ion-searchbar
-      [placeholder]="'COVID.MAIN.SEARCH.PLACEHOLDER' | translate"
-      (click)="onSearchClicked()"
-    ></ion-searchbar>
-  </ion-toolbar>
-</ion-header>
-<ng-container *ngIf="vm$ | async as vm">
-  <ion-content fullscreen="true" fixed="true">
+<ng-container *ngIf="covidInfo$ | async as covidInfo">
+  <ion-header class="ion-no-border">
+    <ion-toolbar color="primary">
+      <ion-title size="large"> {{ "COVID.MAIN.TITLE" | translate }}</ion-title>
+    </ion-toolbar>
+    <ion-toolbar>
+      <ion-searchbar
+        [(ngModel)]="covidInfo.country"
+        [placeholder]="'COVID.MAIN.SEARCH.PLACEHOLDER' | translate"
+        (click)="onSearchClicked()"
+      ></ion-searchbar>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content full-screen="full" class="ion-padding">
     <ion-grid>
       <ion-row>
-        <ion-col size="4" offset="8">
-          <app-date-holder [updated]="vm.stats.updated"></app-date-holder>
+        <ion-col>
+          <app-date-holder [updated]="covidInfo.updated"></app-date-holder>
         </ion-col>
       </ion-row>
-      <!-- <ion-row>
-        <ion-col>
-          <app-select-country
-            [countries]="vm.countries"
-            (onCountrySelect)="goTo($event)"
-          >
-          </app-select-country>
-        </ion-col>
-      </ion-row> -->
+
       <ion-row>
-        <ion-col size="4" size-sm>
+        <ion-col size="4" size-xs>
           <app-covid-stat-card
             label="{{'COVID.MAIN.CASES' | translate}}"
-            [grandTotal]="vm.stats.cases"
-            [todaysTotal]="vm.stats.todayCases"
+            [grandTotal]="covidInfo.cases"
+            [todaysTotal]="covidInfo.todayCases"
             color="primary"
           >
           </app-covid-stat-card>
         </ion-col>
-        <ion-col size="4" size-sm>
+        <ion-col size="4" size-xs>
           <app-covid-stat-card
             label="{{'COVID.MAIN.DEATHS' | translate}}"
             color="danger"
-            [grandTotal]="vm.stats.deaths"
-            [todaysTotal]="vm.stats.todayDeaths"
+            [grandTotal]="covidInfo.deaths"
+            [todaysTotal]="covidInfo.todayDeaths"
           >
           </app-covid-stat-card>
         </ion-col>
-        <ion-col size="4" size-sm>
+        <ion-col size="4" size-xs>
           <app-covid-stat-card
             label="{{'COVID.MAIN.RECOVERED' | translate}}"
             color="success"
-            [grandTotal]="vm.stats.recovered"
-            [todaysTotal]="vm.stats.todayRecovered"
+            [grandTotal]="covidInfo.recovered"
+            [todaysTotal]="covidInfo.todayRecovered"
           >
           </app-covid-stat-card>
         </ion-col>
       </ion-row>
-      <ion-row>
+      <ion-row *ngIf="graph$ | async as graph">
         <ion-col>
-          <app-graph [graphDescription]="vm.historicalStats"></app-graph>
+          <app-graph [graph]="graph"></app-graph>
         </ion-col>
       </ion-row>
     </ion-grid>

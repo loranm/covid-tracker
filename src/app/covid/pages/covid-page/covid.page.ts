@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { combineLatest } from 'rxjs';
-import { map } from 'rxjs/operators';
-import { CountriesService } from 'src/app/shared/services/countries.service';
+import { Component, ElementRef, HostBinding, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { switchMap } from 'rxjs/operators';
+import { loadCountries, selectSelectedCountry } from 'src/app/shared/state';
 import { CovidService } from '../../services/stats.service';
+import { loadCovids, selectStats } from '../../state';
 
 @Component({
   selector: 'app-covid',
@@ -12,37 +13,25 @@ import { CovidService } from '../../services/stats.service';
 })
 export class CovidPage {
   title = 'Worldwide Stats';
-  globalStat$ = this.covidService.globalStat$;
-  countries$ = this.countriesService.countriesList$;
-  historicalStats$ = this.covidService.historicalStats$;
-  selectedCountry$ = this.countriesService.selectedCountry$;
 
-  vm$ = combineLatest([
-    this.globalStat$,
-    this.historicalStats$,
-    this.countries$,
-  ]).pipe(
-    map(([stats, historicalStats, countries]) => ({
-      stats,
-      historicalStats,
-      countries,
-    }))
-  );
+  covidInfo$ = this.store.select(selectStats);
 
-  goTo(countryId: number): void {
-    this.router.navigate([`country/${countryId}`], {
-      relativeTo: this.route,
-    });
-  }
+  graph$ = this.store
+    .select(selectSelectedCountry)
+    .pipe(
+      switchMap((country) => this.covidService.getHistoricalStats(country))
+    );
 
   onSearchClicked() {
     this.router.navigate(['search']);
   }
 
   constructor(
-    private covidService: CovidService,
-    private countriesService: CountriesService,
     private router: Router,
-    private route: ActivatedRoute
-  ) {}
+    private store: Store,
+    private covidService: CovidService
+  ) {
+    this.store.dispatch(loadCovids());
+    this.store.dispatch(loadCountries());
+  }
 }

@@ -1,8 +1,9 @@
 import { ChartDataSets, ChartOptions } from 'chart.js';
-import { Label } from 'ng2-charts';
+import { Color, Label } from 'ng2-charts';
 
-export interface graphDescription {
+export interface GraphDescription {
   lineChartData: ChartDataSets[];
   lineChartLabels: Label[];
   lineChartOptions: ChartOptions;
+  lineChartColors: Color[];
 }

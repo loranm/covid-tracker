@@ -1,31 +1,30 @@
-import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
-import { ChartDataSets, ChartOptions } from 'chart.js';
-import { Label } from 'ng2-charts';
-import { graphDescription } from 'src/app/shared/interfaces';
+import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import { IonCard, IonContent, IonItem } from '@ionic/angular';
+import { Color } from 'ng2-charts';
+import { GraphDescription } from 'src/app/shared/interfaces';
 
 @Component({
   selector: 'app-graph',
   templateUrl: './graph.component.html',
   styleUrls: ['./graph.component.scss'],
 })
-export class GraphComponent implements OnChanges {
-  @Input() graphDescription!: graphDescription;
+export class GraphComponent {
+  @Input() graph: GraphDescription;
 
-  public lineChartData: ChartDataSets[] = [];
-  public lineChartLabels: Label[] = [];
-  public lineChartOptions: ChartOptions = null;
-
-  ngOnChanges(changes: SimpleChanges): void {
-    const {
-      lineChartData,
-      lineChartLabels,
-      lineChartOptions,
-    } = changes?.graphDescription?.currentValue;
-
-    this.lineChartData = lineChartData;
-    this.lineChartLabels = lineChartLabels;
-    this.lineChartOptions = lineChartOptions;
-  }
+  public lineChartLegend = true;
+  public lineChartType = 'line';
+  public lineChartPlugins = [];
+  public lineChartColors: Color[] = [
+    {
+      borderColor: '#3880ff',
+      backgroundColor: 'rgba(56, 128, 255,0.3)',
+    },
+    {
+      borderColor: '#eb445a',
+      backgroundColor: 'rgba(235, 68, 90,0.3)',
+    },
+    { borderColor: '#2dd36f', backgroundColor: 'rgba(45, 211, 111,0.3)' },
+  ];
 
   constructor() {}
 }
