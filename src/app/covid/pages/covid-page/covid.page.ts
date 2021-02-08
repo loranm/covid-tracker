@@ -35,6 +35,10 @@ export class CovidPage {
     });
   }
 
+  onSearchValueChange(evt) {
+    console.log(evt);
+  }
+
   constructor(
     private covidService: CovidService,
     private countriesService: CountriesService,
