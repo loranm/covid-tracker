@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { CountriesService } from '../shared/services/countries.service';
 
 @Component({
   selector: 'app-search',
@@ -6,10 +7,12 @@ import { Component } from '@angular/core';
   styleUrls: ['./search.page.scss'],
 })
 export class SearchPage {
-  public onSearchValueChange(event) {
-    console.log(
-      '🚀 ~ file: search.page.ts ~ line 10 ~ SearchPage ~ onSearchValueChange ~ event',
-      event
-    );
+  filterText: string;
+  countriesList$ = this.countriesService.countriesList$;
+
+  onCountrySelected(countryId: number): void {
+    console.log(countryId);
   }
+
+  constructor(private countriesService: CountriesService) {}
 }

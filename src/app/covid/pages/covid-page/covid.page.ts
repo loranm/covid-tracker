@@ -35,7 +35,7 @@ export class CovidPage {
     });
   }
 
-  onSearchFocus(evt) {
+  onSearchClicked() {
     this.router.navigate(['search']);
   }
 

@@ -7,10 +7,24 @@
   </ion-toolbar>
   <ion-toolbar>
     <ion-searchbar
+      [(ngModel)]="filterText"
       [placeholder]="'COVID.MAIN.SEARCH.PLACEHOLDER' | translate"
-      (ionChange)="onSearchValueChange($event)"
     ></ion-searchbar>
   </ion-toolbar>
 </ion-header>
 
-<ion-content> </ion-content>
+<ion-content class="ion-padding">
+  <ion-list *ngIf="countriesList$ | async as countries">
+    <ion-item
+      *ngFor="let country of countries | filterCountries: filterText "
+      (click)="onCountrySelected(country._id)"
+      button
+      detail
+    >
+      <ion-avatar>
+        <ion-img [src]="country.flag"></ion-img>
+      </ion-avatar>
+      <ion-label class="ion-padding"> {{country.name}} </ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>
