@@ -18,6 +18,10 @@
     ion-list {
       --ion-background-color: transparent;
       --ion-text-color: var(--ion-color-primary-contrast);
+      background: transparent;
+      ion-item {
+        --background: transparent;
+      }
       ion-item > p {
         font-size: 1.2rem;
         font-weight: bold;
