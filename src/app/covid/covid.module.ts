@@ -8,10 +8,11 @@ import { SharedModule } from '../shared/shared.module';
 import { CovidStatCardComponent } from './components/covid-stat-card/covid-stat-card.component';
 import { DateHolderComponent } from './components/date-holder/date-holder.component';
 import { GraphComponent } from './components/graph/graph.component';
-import { SelectCountryComponent } from './components/select-country/select-country.component';
 import { CovidPageRoutingModule } from './covid-routing.module';
-import { CountryDetailsComponent } from './pages/country-details/country-details.component';
 import { CovidPage } from './pages/covid-page/covid.page';
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+import * as fromCovidState from './state';
 
 @NgModule({
   imports: [
@@ -22,13 +23,16 @@ import { CovidPage } from './pages/covid-page/covid.page';
     CovidPageRoutingModule,
     SharedModule,
     ChartsModule,
+    StoreModule.forFeature(
+      fromCovidState.covidFeatureKey,
+      fromCovidState.reducer
+    ),
+    EffectsModule.forFeature([fromCovidState.Effects]),
   ],
   declarations: [
     CovidPage,
     CovidStatCardComponent,
-    SelectCountryComponent,
     DateHolderComponent,
-    CountryDetailsComponent,
     GraphComponent,
   ],
 })

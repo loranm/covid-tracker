@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import { CountriesService } from '../shared/services/countries.service';
+import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { selectCountries, selectCountry } from '../shared/state';
 
 @Component({
   selector: 'app-search',
@@ -8,11 +10,12 @@ import { CountriesService } from '../shared/services/countries.service';
 })
 export class SearchPage {
   filterText: string;
-  countriesList$ = this.countriesService.countriesList$;
+  countriesList$ = this.store.select(selectCountries);
 
   onCountrySelected(countryId: number): void {
-    console.log(countryId);
+    this.store.dispatch(selectCountry({ id: countryId }));
+    this.router.navigate(['world-stats']);
   }
 
-  constructor(private countriesService: CountriesService) {}
+  constructor(private store: Store, private router: Router) {}
 }

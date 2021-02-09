@@ -1,3 +1,5 @@
+import { Country } from './country';
+
 export interface Stat {
   updated: moment.Moment;
   cases: number;
@@ -20,4 +22,6 @@ export interface Stat {
   recoveredPerOneMillion: number;
   criticalPerOneMillion: number;
   affectedCountries: number;
+  country?: string;
+  countryInfo?: Country;
 }

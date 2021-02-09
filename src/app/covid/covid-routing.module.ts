@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { CountryDetailsComponent } from './pages/country-details/country-details.component';
 import { CovidPage } from './pages/covid-page/covid.page';
 
 const routes: Routes = [
@@ -8,7 +7,6 @@ const routes: Routes = [
     path: '',
     component: CovidPage,
   },
-  { path: 'country/:countryId', component: CountryDetailsComponent },
 ];
 
 @NgModule({
