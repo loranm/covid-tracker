@@ -1,4 +1,4 @@
-import { Component, ElementRef, HostBinding, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { switchMap } from 'rxjs/operators';
@@ -10,6 +10,7 @@ import { loadCovids, selectStats } from '../../state';
   selector: 'app-covid',
   templateUrl: './covid.page.html',
   styleUrls: ['./covid.page.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CovidPage {
   title = 'Worldwide Stats';

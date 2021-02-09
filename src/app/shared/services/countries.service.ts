@@ -10,20 +10,12 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root',
 })
 export class CountriesService {
+
+  constructor(private http: HttpClient) {}
   public readonly countriesEndpoint = 'countries';
 
   private selectedCountrySubject = new BehaviorSubject<number>(null);
   selectedCountryAction$ = this.selectedCountrySubject.asObservable();
-
-  private parseCountries(countries: CreateCountriesDTO[]): Country[] {
-    return countries.map((country) => ({
-      _id: country.countryInfo._id,
-      name: country.country,
-      flag: country.countryInfo.flag,
-      iso2: country.countryInfo.iso2,
-      iso3: country.countryInfo.iso3,
-    }));
-  }
 
   countriesList$: Observable<Country[]> = this.http
     .get<CreateCountriesDTO[]>(`${environment.api}/${this.countriesEndpoint}`)
@@ -38,9 +30,17 @@ export class CountriesService {
     })
   );
 
+  private parseCountries(countries: CreateCountriesDTO[]): Country[] {
+    return countries.map((country) => ({
+      _id: country.countryInfo._id,
+      name: country.country,
+      flag: country.countryInfo.flag,
+      iso2: country.countryInfo.iso2,
+      iso3: country.countryInfo.iso3,
+    }));
+  }
+
   public setSelectedCountry(id: number): void {
     this.selectedCountrySubject.next(id);
   }
-
-  constructor(private http: HttpClient) {}
 }
