@@ -1,14 +1,11 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-date-holder',
   templateUrl: './date-holder.component.html',
   styleUrls: ['./date-holder.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class DateHolderComponent implements OnInit {
-  @Input() updated: number;
-
-  constructor() {}
-
-  ngOnInit() {}
+export class DateHolderComponent {
+  @Input() updated: moment.Moment;
 }

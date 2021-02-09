@@ -13,7 +13,7 @@ export class Effects {
       mergeMap(() => {
         return this.countriesService.countriesList$.pipe(
           map((countries) =>
-            fromCountriesActions.loadCountriesSuccess({ countries: countries })
+            fromCountriesActions.loadCountriesSuccess({ countries })
           )
         );
       })

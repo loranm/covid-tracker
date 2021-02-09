@@ -1,22 +1,18 @@
 import { TestBed } from '@angular/core/testing';
 import { provideMockActions } from '@ngrx/effects/testing';
 import { Observable } from 'rxjs';
-
-import { CovidEffects } from './covid.effects';
+import { Effects } from './covid.effects';
 
 describe('CovidEffects', () => {
   let actions$: Observable<any>;
-  let effects: CovidEffects;
+  let effects: Effects;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [
-        CovidEffects,
-        provideMockActions(() => actions$)
-      ]
+      providers: [Effects, provideMockActions(() => actions$)],
     });
 
-    effects = TestBed.inject(CovidEffects);
+    effects = TestBed.inject(Effects);
   });
 
   it('should be created', () => {
